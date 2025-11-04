@@ -1,0 +1,6 @@
+@CloudMight.API_HostAddress = http://localhost:5153
+
+GET {{CloudMight.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
