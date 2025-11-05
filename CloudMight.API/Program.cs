@@ -40,15 +40,11 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
-
+ 
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
     .WithOrigins("http://localhost:4200","https://localhost:4200"));
 app.UseHttpsRedirection();
 app.MapControllers();
-// app.MapGet("/debug/routes", (IEnumerable<EndpointDataSource> sources) =>
-//     string.Join("\n", sources.SelectMany(s => s.Endpoints)
-//         .Select(e => e.DisplayName)));
-
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
