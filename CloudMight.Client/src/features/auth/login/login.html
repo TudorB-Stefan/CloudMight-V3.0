@@ -1,0 +1,35 @@
+<div class="lg:flex md:flex bg-zinc-800 w-100 lg:w-180 md:w-180 rounded-4xl pb-4 shadow-xl mx-auto mt-20">
+  <div class="p-5 lg:w-130">
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="login()"
+      class="flex flex-col lg:border-r md:border-r px-3 border-teal-300 w-full"
+    >
+      <p class="text-2xl font-semibold text-teal-300 mb-5 mx-5 text-center">Log In</p>
+      <div class="mb-3 mx-5 flex items-center">
+        <p class="mr-2 w-30">Email:</p>
+        <input class="input bg-zinc-700 shadow-xl rounded-full text-zinc-100 placeholder:text-zinc-300 py-1 px-3 mt-2 w-full focus:outline-none focus:border-none" placeholder="Email"
+               type="text" [(ngModel)]="creds.email" name="email"
+        >
+      </div>
+      <div class="mb-3 mx-5 flex items-center">
+        <p class="mr-2 w-30">Password:</p>
+        <input class="input bg-zinc-700 shadow-xl rounded-full text-zinc-100 placeholder:text-zinc-300 py-1 px-3 mt-2 w-full focus:outline-none focus:border-none" placeholder="Password"
+               type="password" [(ngModel)]="creds.password" name="password"
+        >
+      </div>
+      <button
+        type="submit"
+        class="btn mt-4 bg-zinc-700 rounded-full shadow-xl p-2 mx-auto text-teal-300 hover:text-teal-200 hover:bg-zinc-600"
+      >
+        Sign in
+      </button>
+    </form>
+  </div>
+  <div class="flex flex-col justify-center text-center w-70 lg:w-70 md:w-70 w-100 items-center">
+    <div>Don't have an account?</div>
+    <div>
+      <a href="register" class="text-teal-300 font-semibold hover:text-teal-200">Register</a>
+    </div>
+  </div>
+</div>

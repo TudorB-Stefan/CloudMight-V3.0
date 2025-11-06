@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Share Tech Mono';
+  src: url('/assets/fonts/ShareTechMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+html, body {
+  font-family: 'Share Tech Mono', monospace;
+}
