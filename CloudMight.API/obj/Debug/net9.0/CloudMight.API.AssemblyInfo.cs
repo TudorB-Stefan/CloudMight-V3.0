@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CloudMight.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+067f1ff702ea95947373fb1f9550a2957d74d3d4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+058e7b7f6b4bdb98e8480e23c775a328cf4e2e5d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CloudMight.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CloudMight.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
