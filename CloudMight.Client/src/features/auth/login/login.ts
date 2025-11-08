@@ -1,6 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from "../../../core/services/account-service";
+import { Router } from "@angular/router";
+import { AuthService } from "../../../core/services/auth-service";
 @Component({
   selector: 'app-login',
   imports: [FormsModule],
@@ -8,12 +10,15 @@ import { AccountService } from "../../../core/services/account-service";
   styleUrl: './login.css',
 })
 export class Login {
-  private accountService = inject(AccountService)
-  protected creds: any={}
-  login() {
-    this.accountService.login(this.creds).subscribe({
-      next: results => console.log(results),
-      error: error => alert(error.message)
-    })
+  private auth = inject(AuthService);
+  private router = inject(Router);
+
+  creds = { email: '', password: ''};
+  errorMsg = '';
+  login(){
+    this.auth.login(this.creds).subscribe({
+      next: () => this.router.navigate(['/']),
+      error: (err) => this.errorMsg = 'Invalid email or password'
+    });
   }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { AuthService } from "../../core/services/auth-service";
 
 @Component({
   selector: 'app-nav',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })
-export class Nav {
+export class Nav implements OnInit {
+  private auth = inject(AuthService);
+  ngOnInit(){
+    this.auth.isLoggedin();
+  }
 }

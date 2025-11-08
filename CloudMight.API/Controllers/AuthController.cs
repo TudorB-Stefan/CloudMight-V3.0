@@ -53,10 +53,4 @@ public class AuthController(UserManager<User> userManager,ITokenService tokenSer
         if (!result)  return Unauthorized("Invalid email or password");
         return await user.ToDto(tokenService);
     }
-    [HttpPut("edit-profile")]
-    public async Task<ActionResult<UserDto>> EditProfile([FromBody] UserDto userDto)
-    {
-        return null;
-    }
-    
 }

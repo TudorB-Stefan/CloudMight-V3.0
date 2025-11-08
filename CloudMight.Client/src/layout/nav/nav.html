@@ -7,6 +7,9 @@
     <h2 class="btn btn-ghost text-2xl font-semibold">
       _cloudMight
     </h2>
+    <h2 *ngIf="auth.isLoggedIn()" class="btn btn-ghost text-2xl font-semibold">
+      Logged
+    </h2>
   </div>
   <ul class="hidden md:flex items-center gap-6 text-[#ECEFF4] font-medium">
     <li><a href="/login" class="hover:text-teal-200 transition-colors">Log in</a></li>
