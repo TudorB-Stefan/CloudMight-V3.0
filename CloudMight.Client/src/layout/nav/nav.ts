@@ -8,8 +8,11 @@ import { AuthService } from "../../core/services/auth-service";
   styleUrl: './nav.css',
 })
 export class Nav implements OnInit {
-  private auth = inject(AuthService);
+  auth = inject(AuthService);
+  logout(){
+    this.auth.logout();
+  }
   ngOnInit(){
-    this.auth.isLoggedin();
+    this.auth.isLoggedIn();
   }
 }

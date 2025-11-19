@@ -8,20 +8,17 @@
       <p class="text-2xl font-semibold text-teal-300 mb-5 mx-5 text-center">Log In</p>
       <div class="mb-3 mx-5 flex items-center">
         <p class="mr-2 w-30">Email:</p>
-        <input class="input bg-zinc-700 shadow-xl rounded-full text-zinc-100 placeholder:text-zinc-300 py-1 px-3 mt-2 w-full focus:outline-none focus:border-none" placeholder="Email"
-               type="text" [(ngModel)]="creds.email" name="email"
-        >
+        <input class="input bg-zinc-700 shadow-xl rounded-full text-teal-100 placeholder:text-zinc-300 py-1 px-3 mt-2 w-full focus:outline-none focus:border-none" placeholder="Email"
+               type="text" [(ngModel)]="creds.email" name="email">
       </div>
       <div class="mb-3 mx-5 flex items-center">
         <p class="mr-2 w-30">Password:</p>
-        <input class="input bg-zinc-700 shadow-xl rounded-full text-zinc-100 placeholder:text-zinc-300 py-1 px-3 mt-2 w-full focus:outline-none focus:border-none" placeholder="Password"
-               type="password" [(ngModel)]="creds.password" name="password"
-        >
+        <input class="input bg-zinc-700 shadow-xl rounded-full text-teal-100 placeholder:text-zinc-300 py-1 px-3 mt-2 w-full focus:outline-none focus:border-none" placeholder="Password"
+               type="password" [(ngModel)]="creds.password" name="password">
       </div>
       <button
         type="submit"
-        class="btn mt-4 bg-zinc-700 rounded-full shadow-xl p-2 mx-auto text-teal-300 hover:text-teal-200 hover:bg-zinc-600"
-      >
+        class="btn mt-4 bg-zinc-700 rounded-full shadow-xl p-2 mx-auto text-teal-300 hover:text-teal-200 hover:bg-zinc-600">
         Sign in
       </button>
     </form>

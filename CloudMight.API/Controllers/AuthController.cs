@@ -41,6 +41,8 @@ public class AuthController(UserManager<User> userManager,ITokenService tokenSer
             }
             return ValidationProblem();
         }
+
+        await userManager.AddToRoleAsync(user, "Member");
         return await user.ToDto(tokenService);
     }
 

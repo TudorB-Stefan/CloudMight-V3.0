@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AccountService } from "../../../core/services/account-service";
 import { Router } from "@angular/router";
 import { AuthService } from "../../../core/services/auth-service";
 @Component({
@@ -17,7 +16,7 @@ export class Login {
   errorMsg = '';
   login(){
     this.auth.login(this.creds).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => this.router.navigate(['/dashboard']),
       error: (err) => this.errorMsg = 'Invalid email or password'
     });
   }
