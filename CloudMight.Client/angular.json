@@ -8,16 +8,16 @@
       "schematics": {
         "@schematics/angular:component": {
           "skipTests": true,
-          "path": "src"
+          "path": "src/app"
         },
         "@schematics/angular:service": {
-          "path": "src/core/services"
+          "path": "src/app/core/services"
         },
         "@schematics/angular:guard": {
-          "path": "src/core/guards"
+          "path": "src/app/core/guards"
         },
         "@schematics/angular:interceptor": {
-          "path": "src/core/interceptors"
+          "path": "src/app/core/interceptors"
         }
       },
       "root": "",

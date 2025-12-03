@@ -1,16 +1,19 @@
+using System.Security.Claims;
 using CloudMight.API.Data;
 using CloudMight.API.DTOs;
 using CloudMight.API.Entities;
 using CloudMight.API.Extensions;
 using CloudMight.API.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CloudMight.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(UserManager<User> userManager,ITokenService tokenService) : ControllerBase
+public class AuthController(UserManager<User> userManager,SignInManager<User> signInManager,ITokenService tokenService) : ControllerBase
 {
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register([FromBody]RegisterDto registerDto)

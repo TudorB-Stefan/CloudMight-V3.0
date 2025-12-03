@@ -15,7 +15,15 @@ public static class UserExtension
             Email = user.Email,
             FirstName = user.FirstName,
             LastName = user.LastName,
-            Token = await tokenService.CreateToken(user)
+            Token = await tokenService.CreateToken(user),
+            Partition = user.Partition == null ? null : new PartitionDto
+            {
+                Id = user.Partition.Id,
+                SizeBytes =user.Partition.SizeBytes,
+                UsedBytes = user.Partition.UsedBytes,
+                MountPath = user.Partition.MountPath,
+                DevicePath = user.Partition.DevicePath
+            }
         };
     }
 }
