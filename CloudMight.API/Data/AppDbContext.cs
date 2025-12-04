@@ -8,8 +8,9 @@ namespace CloudMight.API.Data;
 
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<User> (options)
 {
-    public DbSet<File> Files { get; set; }
     public DbSet<Partition> Partitions { get; set; }
+    public DbSet<Folder> Folders { get; set; }
+    public DbSet<File> Files { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -29,17 +30,36 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbCo
                     NormalizedName = "ADMIN"
                 }
             );
-        modelBuilder.Entity<User>()
-            .HasOne(u => u.Partition)
-            .WithOne(p => p.User)
-            .HasForeignKey<Partition>(p => p.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
-        modelBuilder.Entity<Partition>()
-            .HasMany(p => p.Files)
-            .WithOne(f => f.Partition)
-            .HasForeignKey(f => f.PartitionId)
-            .OnDelete(DeleteBehavior.Cascade);
-        modelBuilder.Entity<File>()
-            .HasIndex(f => new { f.PartitionId, f.Name });
+        modelBuilder.Entity<Partition>(partition => 
+        {
+            partition.HasOne(p => p.User)
+                .WithMany(u => u.Partitions)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            partition.HasOne(p => p.MainFolder)
+                .WithOne(f => f.Partition!)
+                .HasForeignKey<Partition>(p => p.MainFolderId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<Folder>(folder =>
+        {
+            folder.HasOne(f => f.ParentFolder)
+                .WithMany(f => f.Folders)
+                .HasForeignKey(f => f.ParentFolderId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+            folder.HasOne(f => f.Partition)
+                .WithOne(p => p.MainFolder)
+                .HasForeignKey<Folder>(p => p.PartitionId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+        modelBuilder.Entity<File>(file =>
+        {
+            file.HasOne(f => f.Folder)
+                .WithMany(folder => folder.Files)
+                .HasForeignKey(f => f.FolderId)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
     }
 }

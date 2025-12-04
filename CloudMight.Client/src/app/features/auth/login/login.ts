@@ -9,13 +9,13 @@ import { AuthService } from "../../../core/services/auth-service";
   styleUrl: './login.css',
 })
 export class Login {
-  private auth = inject(AuthService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   creds = { email: '', password: ''};
   errorMsg = '';
   login(){
-    this.auth.login(this.creds).subscribe({
+    this.authService.login(this.creds).subscribe({
       next: () => this.router.navigate(['/dashboard']),
       error: (err) => this.errorMsg = 'Invalid email or password'
     });

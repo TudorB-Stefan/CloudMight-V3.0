@@ -12,9 +12,9 @@ public class TokenService(IConfiguration config,UserManager<User> userManager) :
 { 
     public async Task<string> CreateToken(User user)
     {
-         var tokenKey = config["TokenKey"] ?? throw new Exception("TokenKey is missing");
+         var tokenKey = config["Jwt:Key"] ?? throw new Exception("TokenKey is missing");
          if(tokenKey.Length<64) 
-             throw new Exception("Invalid token key");
+             throw new Exception("Invalid token key lenght");
          var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenKey));
          var claims = new List<Claim>
          {
@@ -28,7 +28,8 @@ public class TokenService(IConfiguration config,UserManager<User> userManager) :
          {
              Subject = new ClaimsIdentity(claims),
              Expires = DateTime.UtcNow.AddDays(3),
-             SigningCredentials = creds
+             SigningCredentials = creds,Issuer = config["Jwt:Issuer"],
+             Audience = config["Jwt:Audience"]
          };
          var tokenHandler = new JwtSecurityTokenHandler();
          var token = tokenHandler.CreateToken(tokenDescriptor);

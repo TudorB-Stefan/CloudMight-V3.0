@@ -1,10 +1,10 @@
 namespace CloudMight.API.DTOs;
 
-public class PartitionDto
+public class AuthPartitionDto
 {
     public required string Id { get; set; }
+    public required string Name { get; set; }
     public required long SizeBytes { get; set; }
     public required long UsedBytes { get; set; }
-    public required string MountPath { get; set; }
-    public required string DevicePath { get; set; }
+    public required string MainFolderId { get; set; }
 }

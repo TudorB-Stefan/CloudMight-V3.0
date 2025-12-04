@@ -6,23 +6,29 @@ namespace CloudMight.API.Extensions;
 
 public static class UserExtension
 {
-    public static async Task<UserDto> ToDto(this User user, ITokenService tokenService)
+    public static async Task<AuthResponseDto> ToDto(this User user, ITokenService tokenService)
     {
-        return new UserDto
+        return new AuthResponseDto
         {
-            Id = user.Id,
-            UserName = user.UserName,
-            Email = user.Email,
-            FirstName = user.FirstName,
-            LastName = user.LastName,
-            Token = await tokenService.CreateToken(user),
-            Partition = user.Partition == null ? null : new PartitionDto
+            RefreshToken = await tokenService.CreateToken(user),
+            RefreshTokenExpiry = DateTime.UtcNow.AddHours(2),
+            AuthUserDto = new AuthUserDto
             {
-                Id = user.Partition.Id,
-                SizeBytes =user.Partition.SizeBytes,
-                UsedBytes = user.Partition.UsedBytes,
-                MountPath = user.Partition.MountPath,
-                DevicePath = user.Partition.DevicePath
+                Id = user.Id,
+                UserName = user.UserName!,
+                Email = user.Email!,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                CreatedAt = user.CreatedAt,
+                Partitions = user.Partitions?.Select(p => new AuthPartitionDto
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    SizeBytes = p.SizeBytes,
+                    UsedBytes = p.UsedBytes,
+                    MainFolderId = p.MainFolderId,
+                    
+                }).ToList() ?? new List<AuthPartitionDto>()
             }
         };
     }

@@ -8,6 +8,7 @@ public class User : IdentityUser
     public string? LastName { get; set; }
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpiry { get; set; }
-    public string PartitionId { get; set; }
-    public Partition Partition { get; set; } = null!;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime ModifiedAt { get; set; } = DateTime.UtcNow;
+    public List<Partition> Partitions { get; set; } = null!;
 }
