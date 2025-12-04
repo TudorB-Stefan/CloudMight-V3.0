@@ -8,7 +8,7 @@
       _cloudMight
     </h2>
   </div>
-  @if(auth.isLoggedIn()){
+  @if(authService.currentUser()){
     <ul class="hidden md:flex items-center gap-6 text-[#ECEFF4] font-medium">
       <li><button (click)="logout()" class="hover:text-teal-200 transition-colors">Log out</button></li>
     </ul>

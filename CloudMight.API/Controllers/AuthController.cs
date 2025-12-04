@@ -80,4 +80,5 @@ public class AuthController(AppDbContext context, UserManager<User> userManager,
         await _context.Entry(user).Collection(u => u.Partitions).LoadAsync();
         return await user.ToDto(_tokenService);
     }
+    
 }
